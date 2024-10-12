@@ -1,52 +1,36 @@
 package com.example.crudUsingMySQL.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.Date;
+
+@Data
 @Entity
+@Table(name = "EMPLOYEE")
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long employeeId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "EMPLOYEE_ID")
+    private Long id;
 
-    private String employeeName;
+    @Column(name = "EMPLOYEE_NAME")
+    private String name;
 
-    private float employeeSalary;
+    @Column(name = "DEPARTMENT")
+    private String department;
 
-    public Employee() {
-    }
+    @Column(name = "SALARY")
+    private Integer salary;
 
-    public Employee(Long employeeId, String employeeName, float employeeSalary) {
-        this.employeeId = employeeId;
-        this.employeeName = employeeName;
-        this.employeeSalary = employeeSalary;
-    }
+    @Column(name = "CREATED_DATE")
+    @CreationTimestamp
+    private Date createdTime;
 
-    public Long getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public String getEmployeeName() {
-        return employeeName;
-    }
-
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
-    }
-
-    public float getEmployeeSalary() {
-        return employeeSalary;
-    }
-
-    public void setEmployeeSalary(float employeeSalary) {
-        this.employeeSalary = employeeSalary;
-    }
-
+    @Column(name = "UPDATED_DATE")
+    @UpdateTimestamp
+    private Date updatedTime;
 }
